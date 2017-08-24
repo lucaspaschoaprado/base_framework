@@ -23,4 +23,16 @@ $result = new Usuarios();
 //$senha = "123456";
 //$result->validaLogin($login, $senha);
 //echo $result;
+
+
+//Insere novo usuário.
+$result->setNomeUsuario("Cliente 01");
+$result->setLoginUsuario("cliente01");
+$result->setSenhaUsuario("cliente01");
+$result->setStatusUsuario("1");
+
+$result->inserirUsuario();
+
+echo $result;
+
 ?>

@@ -70,6 +70,18 @@ class Usuarios{
 		$this->status_usuario = $valor;
 	}
 
+	public function setarDados($dados){
+
+		//Variáveis do banco de dados. Preencher exatamente como nas colunas do bd.
+		$this->setIdUsuario($dados['id']);
+		$this->setNomeUsuario($dados['nome']);
+		$this->setLoginUsuario($dados['login']);
+		$this->setSenhaUsuario($dados['senha']);
+		$this->setDataUsuario(new DateTime($dados['data']));
+		$this->setStatusUsuario($dados['status']);
+
+	}
+
 
 	//Abaixo criamos todos os modelos de querys possíveis para a tabela usuários.
 	//Método para seleção por ID.
@@ -86,13 +98,8 @@ class Usuarios{
 			
 			$linha = $resultados[0];
 
-			//Variáveis do banco de dados. Preencher exatamente como nas colunas do bd.
-			$this->setIdUsuario($linha['id']);
-			$this->setNomeUsuario($linha['nome']);
-			$this->setLoginUsuario($linha['login']);
-			$this->setSenhaUsuario($linha['senha']);
-			$this->setDataUsuario(new DateTime($linha['data']));
-			$this->setStatusUsuario($linha['status']);
+			//Puxa o método setarDados com as colunas do banco de dados.
+			$this->setarDados($linha);
 		}
 
 	}
@@ -132,17 +139,36 @@ class Usuarios{
 			
 			$linha = $resultados[0];
 
-			//Variáveis do banco de dados. Preencher exatamente como nas colunas do bd.
-			$this->setIdUsuario($linha['id']);
-			$this->setNomeUsuario($linha['nome']);
-			$this->setLoginUsuario($linha['login']);
-			$this->setSenhaUsuario($linha['senha']);
-			$this->setDataUsuario(new DateTime($linha['data']));
-			$this->setStatusUsuario($linha['status']);
+			//Puxa o método setarDados com as colunas do banco de dados.
+			$this->setarDados($linha);
+
 		}else{
 
 			throw new Exception("Login e/ou senha inválidos.");
 			
+		}
+	}
+
+	//Método para inserir dados no sistema.
+	public function inserirUsuario(){
+
+		$conecta = new Database();
+
+		$resultados = $conecta->select("CALL sp_usuarios_inserir(:NOME, :LOGIN, :SENHA, :STATUS)", array(
+			":NOME"=>$this->getNomeUsuario(),
+			":LOGIN"=>$this->getLoginUsuario(),
+			":SENHA"=>$this->getSenhaUsuario(),
+			":STATUS"=>$this->getStatusUsuario()
+		));
+
+		//Agora vamos validar a consulta e ver se existe algum retorno.
+		if (count($resultados) > 0) {
+			
+			$linha = $resultados[0];
+
+			//Puxa o método setarDados com as colunas do banco de dados.
+			$this->setarDados($linha);
+
 		}
 	}
 
