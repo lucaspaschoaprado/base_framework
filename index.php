@@ -25,14 +25,37 @@ $result = new Usuarios();
 //echo $result;
 
 
-//Insere novo usuário.
-$result->setNomeUsuario("Cliente 01");
-$result->setLoginUsuario("cliente01");
-$result->setSenhaUsuario("cliente01");
-$result->setStatusUsuario("1");
+//Insere novo usuário COM procedure.
+//$result->setNomeUsuario("Cliente 01");
+//$result->setLoginUsuario("cliente01");
+//$result->setSenhaUsuario("cliente01");
+//$result->setStatusUsuario("1");
+//$result->inserirUsuario();
+//echo $result;
 
-$result->inserirUsuario();
 
-echo $result;
+//Insere novo usuário SEM procedure.
+//$nome = "Cliente 02";
+//$login = "cliente02";
+//$senha = "cliente02";
+//$status = "1";
+//$result->inserirUsuarioSemProcedure($nome, $login, $senha, $status);
+//echo json_encode($result);
+
+
+//Alterar dados do usuário.
+//$result->carregaPeloId(1);
+//$nome = "Lucas Prado";
+//$login = "lucasprado";
+//$senha = "123456";
+//$status = "1";
+//$result->alterarUsuario($nome, $login, $senha, $status);
+//echo $result;
+
+
+//Excluir usuário.
+//$result->carregaPeloId(54);
+//$result->excluirUsuario();
+//echo $result;
 
 ?>

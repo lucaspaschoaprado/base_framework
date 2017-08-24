@@ -149,7 +149,7 @@ class Usuarios{
 		}
 	}
 
-	//Método para inserir dados no sistema.
+	//Método para inserir dados no sistema com procedure retornando o valor inserido.
 	public function inserirUsuario(){
 
 		$conecta = new Database();
@@ -169,7 +169,98 @@ class Usuarios{
 			//Puxa o método setarDados com as colunas do banco de dados.
 			$this->setarDados($linha);
 
+			echo "OK - Com Procedure";
+
+		}else{
+			throw new Exception("Error");
 		}
+	}
+
+	//Método para inserir dados no sistema sem procedure.
+	public function inserirUsuarioSemProcedure($nome, $login, $senha, $status){
+
+		$conecta = new Database();
+
+		$resultados = $conecta->query("INSERT INTO usuarios (nome, login, senha, status) VALUES (:NOME, :LOGIN, :SENHA, :STATUS)", array(
+
+			":NOME"=>$nome,
+			":LOGIN"=>$login,
+			":SENHA"=>$senha,
+			":STATUS"=>$status
+
+		));
+		
+		if($resultados->rowCount() > 0){
+		
+			echo "OK - Sem Procedure";
+		
+		}else{
+		
+			throw new Exception("Error Processing Request");
+		
+		}
+
+		return $resultados;
+
+	}
+
+	//Método para alterar usuário.
+	public function alterarUsuario($nome, $login, $senha, $status){
+
+		$this->setNomeUsuario($nome);
+		$this->setLoginUsuario($login);
+		$this->setSenhaUsuario($senha);
+		$this->setStatusUsuario($status);
+
+		$conecta = new Database();
+
+		$resultados = $conecta->query("UPDATE usuarios SET nome = :NOME, login = :LOGIN, senha = :SENHA, status = :STATUS WHERE id = :ID", array(
+
+			":ID"=>$this->getIdUsuario(),
+			":NOME"=>$this->getNomeUsuario(),
+			":LOGIN"=>$this->getLoginUsuario(),
+			":SENHA"=>$this->getSenhaUsuario(),
+			":STATUS"=>$this->getStatusUsuario()
+
+		));
+		
+		if($resultados->rowCount() > 0){
+		
+			echo "Alterado com sucesso";
+		
+		}else{
+		
+			throw new Exception("Error Processing Request");
+		
+		}
+
+		return $resultados;
+
+	}
+
+	//Método para excluir usuário.
+	public function excluirUsuario(){
+
+		$conecta = new Database();
+
+		$resultados = $conecta->query("DELETE FROM usuarios WHERE id = :ID", array(
+
+			":ID"=>$this->getIdUsuario()
+
+		));
+		
+		if($resultados->rowCount() > 0){
+		
+			echo "Excluido com sucesso";
+		
+		}else{
+		
+			throw new Exception("Error Processing Request");
+		
+		}
+
+		return $resultados;
+
 	}
 
 	//Aqui exibimos todo o conteúdo da consulta como array.
