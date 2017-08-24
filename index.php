@@ -1,9 +1,9 @@
 <?php 
 require_once("config.php"); 
 
-$conecta = new Database();
+$result = new Usuarios();
 
-$usuarios = $conecta->select("SELECT * FROM usuarios");
+$result->carregaPeloId(1);
 
-echo json_encode($usuarios);
+echo $result;
 ?>

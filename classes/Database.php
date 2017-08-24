@@ -20,7 +20,7 @@ class Database extends PDO{
 
 		foreach ($parametros as $key => $value) {
 			
-			$this->setParametro($key, $value);
+			$this->setParametro($statement, $key, $value);
 
 		}
 	}
