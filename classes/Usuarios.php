@@ -97,6 +97,55 @@ class Usuarios{
 
 	}
 
+	//Método para carregar todos os usuários da tabela "usuários".
+	public static function carregaUsuarios(){
+
+		$conecta = new Database();
+
+		return $resultados = $conecta->select("SELECT * FROM usuarios ORDER BY nome ASC");
+	}
+
+	//Método da pesquisar usuários pelo nome.
+	public static function buscaUsuarios($nome){
+
+		$conecta = new Database();
+
+		return $resultados = $conecta->select("SELECT * FROM usuarios WHERE nome LIKE :NOME_USUARIO ORDER BY nome ASC", array(
+
+			":NOME_USUARIO"=>"%".$nome."%"
+
+		));
+	}
+
+	//Método para buscar usuário validando o login/senha.
+	public function validaLogin($login, $senha){
+
+		$conecta = new Database();
+
+		$resultados = $conecta->select("SELECT * FROM usuarios WHERE login = :LOGIN AND senha = :SENHA", array(
+			":LOGIN"=>$login,
+			":SENHA"=>$senha
+		));
+
+		//Agora vamos validar a consulta e ver se existe algum retorno.
+		if (count($resultados) > 0) {
+			
+			$linha = $resultados[0];
+
+			//Variáveis do banco de dados. Preencher exatamente como nas colunas do bd.
+			$this->setIdUsuario($linha['id']);
+			$this->setNomeUsuario($linha['nome']);
+			$this->setLoginUsuario($linha['login']);
+			$this->setSenhaUsuario($linha['senha']);
+			$this->setDataUsuario(new DateTime($linha['data']));
+			$this->setStatusUsuario($linha['status']);
+		}else{
+
+			throw new Exception("Login e/ou senha inválidos.");
+			
+		}
+	}
+
 	//Aqui exibimos todo o conteúdo da consulta como array.
 	public function __toString(){
 
