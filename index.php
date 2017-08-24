@@ -1,4 +1,5 @@
-<?php 
+<?php
+//Puxamos o autoload 
 require_once("config.php"); 
 
 $result = new Usuarios();
