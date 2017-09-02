@@ -1,5 +1,8 @@
 <?php require_once("classes/Database.php"); ?>
 
+<!-- ************************************************************************************************************** -->
+<!-- ALERTAS DA CLASSE USUARIOS -->
+
 <!-- Cadastrado com sucesso! -->
 <div class="modal fade" id="usuarioCadastroAlert" tabindex="-1" role="dialog" aria-labelledby="usuarioCadastroAlert" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -14,7 +17,7 @@
         <b>CADASTRADO COM SUCESSO</b>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='index.php'">Fechar</button>
       </div>
     </div>
   </div>
@@ -34,7 +37,7 @@
         <b>ALTERADO COM SUCESSO</b>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='index.php'">Fechar</button>
       </div>
     </div>
   </div>
@@ -54,8 +57,11 @@
         <b>EXCLUÍDO COM SUCESSO</b>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='index.php'">Fechar</button>
       </div>
     </div>
   </div>
 </div>
+
+<!-- FIM DOS ALERTAS DA CLASSE USUARIOS -->
+<!-- ************************************************************************************************************** -->

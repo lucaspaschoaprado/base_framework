@@ -21,8 +21,8 @@ $result = json_encode($result);
 $result = json_decode($result);
 
 if ($result >= 1) {
-    //$alerta = Alertas::usuarioCadastroAlert();
-    $alerta = Alertas::usuarioUpdateAlert();
+    $alerta = Alertas::usuarioCadastroAlert();
+    //$alerta = Alertas::usuarioUpdateAlert();
     //$alerta = Alertas::usuarioDeleteAlert();
 }
 
