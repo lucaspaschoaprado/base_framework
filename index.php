@@ -1,18 +1,30 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
 <?php
 //Puxamos o autoload 
-require_once("config.php"); 
+require_once("config.php");
+require_once("modal.php"); 
 
 $result = new Usuarios();
 
 //Carrega linha de registro do banco de dados pelo ID.
-//$result->carregaPeloId(ID AQUI);
+//$result->carregaPeloId(2);
 //echo $result;
-
 
 //Carrega lista de usuários.
 $result = Usuarios::carregaUsuarios();
 $result = json_encode($result);
 $result = json_decode($result);
+
+if ($result >= 1) {
+    //$alerta = Alertas::usuarioCadastroAlert();
+    $alerta = Alertas::usuarioUpdateAlert();
+    //$alerta = Alertas::usuarioDeleteAlert();
+}
 
 
 //Realiza uma busca de usuários pelo nome digitado.
@@ -112,166 +124,29 @@ body {
 </head>
 <body style="width: 50%;">
 
+
 <h5>Tabela de Teste com Dados Fictícios</h5>
 <br>
 
 <table id="table_id" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
     <thead>
         <tr>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Start date</th>
-            <th>Salary</th>
-            <th>Extn.</th>
-            <th>E-mail</th>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Login</th>
+            <th>Senha</th>
+            <th>Data</th>
+            <th>Status</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>Tiger</td>
-            <td>Nixon</td>
-            <td>System Architect</td>
-            <td>Edinburgh</td>
-            <td>61</td>
-            <td>2011/04/25</td>
-            <td>$320,800</td>
-            <td>5421</td>
-            <td>t.nixon@datatables.net</td>
-        </tr>
-        <tr>
-            <td>Garrett</td>
-            <td>Winters</td>
-            <td>Accountant</td>
-            <td>Tokyo</td>
-            <td>63</td>
-            <td>2011/07/25</td>
-            <td>$170,750</td>
-            <td>8422</td>
-            <td>g.winters@datatables.net</td>
-        </tr>
-        <tr>
-            <td>Ashton</td>
-            <td>Cox</td>
-            <td>Junior Technical Author</td>
-            <td>San Francisco</td>
-            <td>66</td>
-            <td>2009/01/12</td>
-            <td>$86,000</td>
-            <td>1562</td>
-            <td>a.cox@datatables.net</td>
-        </tr>
-        <tr>
-            <td>Thor</td>
-            <td>Walton</td>
-            <td>Developer</td>
-            <td>New York</td>
-            <td>61</td>
-            <td>2013/08/11</td>
-            <td>$98,540</td>
-            <td>8327</td>
-            <td>t.walton@datatables.net</td>
-        </tr>
-        <tr>
-            <td>Finn</td>
-            <td>Camacho</td>
-            <td>Support Engineer</td>
-            <td>San Francisco</td>
-            <td>47</td>
-            <td>2009/07/07</td>
-            <td>$87,500</td>
-            <td>2927</td>
-            <td>f.camacho@datatables.net</td>
-        </tr>
-        <tr>
-            <td>Serge</td>
-            <td>Baldwin</td>
-            <td>Data Coordinator</td>
-            <td>Singapore</td>
-            <td>64</td>
-            <td>2012/04/09</td>
-            <td>$138,575</td>
-            <td>8352</td>
-            <td>s.baldwin@datatables.net</td>
-        </tr>
-        <tr>
-            <td>Zenaida</td>
-            <td>Frank</td>
-            <td>Software Engineer</td>
-            <td>New York</td>
-            <td>63</td>
-            <td>2010/01/04</td>
-            <td>$125,250</td>
-            <td>7439</td>
-            <td>z.frank@datatables.net</td>
-        </tr>
-        <tr>
-            <td>Zorita</td>
-            <td>Serrano</td>
-            <td>Software Engineer</td>
-            <td>San Francisco</td>
-            <td>56</td>
-            <td>2012/06/01</td>
-            <td>$115,000</td>
-            <td>4389</td>
-            <td>z.serrano@datatables.net</td>
-        </tr>
-        <tr>
-            <td>Jennifer</td>
-            <td>Acosta</td>
-            <td>Junior Javascript Developer</td>
-            <td>Edinburgh</td>
-            <td>43</td>
-            <td>2013/02/01</td>
-            <td>$75,650</td>
-            <td>3431</td>
-            <td>j.acosta@datatables.net</td>
-        </tr>
-        <tr>
-            <td>Cara</td>
-            <td>Stevens</td>
-            <td>Sales Assistant</td>
-            <td>New York</td>
-            <td>46</td>
-            <td>2011/12/06</td>
-            <td>$145,600</td>
-            <td>3990</td>
-            <td>c.stevens@datatables.net</td>
-        </tr>
-        <tr>
-            <td>Hermione</td>
-            <td>Butler</td>
-            <td>Regional Director</td>
-            <td>London</td>
-            <td>47</td>
-            <td>2011/03/21</td>
-            <td>$356,250</td>
-            <td>1016</td>
-            <td>h.butler@datatables.net</td>
-        </tr>
-        <tr>
-            <td>Lael</td>
-            <td>Greer</td>
-            <td>Systems Administrator</td>
-            <td>London</td>
-            <td>21</td>
-            <td>2009/02/27</td>
-            <td>$103,500</td>
-            <td>6733</td>
-            <td>l.greer@datatables.net</td>
-        </tr>
-        <tr>
-            <td>Jonas</td>
-            <td>Alexander</td>
-            <td>Developer</td>
-            <td>San Francisco</td>
-            <td>30</td>
-            <td>2010/07/14</td>
-            <td>$86,500</td>
-            <td>8196</td>
-            <td>j.alexander@datatables.net</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
     </tbody>
 </table>

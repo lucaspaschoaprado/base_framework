@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+$title = "Título do Sistema";
 
 class Database extends PDO{
 
@@ -8,6 +10,7 @@ class Database extends PDO{
 	private $db = "base_framework";
 	private $user = "root";
 	private $senha = "";
+	public $title = "Título do Sistema";
 
 	//Construtor para executar a conexão automaticamente quando a classe foi instanciada.
 	public function __construct(){
@@ -51,6 +54,5 @@ class Database extends PDO{
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 	}
-
 }
 ?>
