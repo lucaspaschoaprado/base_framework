@@ -89,5 +89,25 @@
   </div>
 </div>
 
+<!-- ERRO - LOGIN E/OU SENHA INCORRETOS! -->
+<div class="modal fade bg-danger" id="loginFailAlert" tabindex="-1" role="dialog" aria-labelledby="loginFailAlert" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginFailAlert"><?php echo $title; ?></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" align="center">
+        <b>ERRO!<br />LOGIN E/OU SENHA INCORRETOS</b>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="window.location.href='index.php'">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- FIM DOS ALERTAS DA CLASSE USUARIOS -->
 <!-- ************************************************************************************************************** -->

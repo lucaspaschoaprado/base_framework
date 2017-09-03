@@ -6,13 +6,14 @@ require_once("modal.php");
 $result = new Usuarios();
 
 //Carrega linha de registro do banco de dados pelo ID.
-//$result->carregaPeloId(2);
-//echo $result;
+$result->carregaPeloId(2);
+$carregaPeloId = json_decode($result, true);
+//echo $carregaPeloId["id_usuario"];
 
 //Carrega lista de usuários.
-$result = Usuarios::carregaUsuarios();
-$result = json_encode($result);
-$result = json_decode($result);
+$carregaUsuarios = Usuarios::carregaUsuarios();
+//$carregaUsuarios = json_encode($carregaUsuarios);
+//$carregaUsuarios = json_decode($carregaUsuarios, true);
 
 //Realiza uma busca de usuários pelo nome digitado.
 //$result = Usuarios::buscaUsuarios("BUSCA AQUI");
@@ -172,7 +173,7 @@ body {
 <br><br><br>
 
 
-<h5>Tabela de Teste com Dados Fictícios</h5>
+<h5>Puxando dados do Banco - Tabela Usuários pelo Método Usuarios::carregaPeloId();</h5>
 <br>
 
 <table id="table_id" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
@@ -188,12 +189,25 @@ body {
     </thead>
     <tbody>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><?php echo $carregaPeloId["id_usuario"]; ?></td>
+            <td><?php echo $carregaPeloId["nome_usuario"]; ?></td>
+            <td><?php echo $carregaPeloId["login_usuario"]; ?></td>
+            <td><?php echo $carregaPeloId["senha_usuario"]; ?></td>
+            <td>
+            	<?php  
+            	$carregaPeloId["data_usuario"] = date("d/m/Y H:i:s", strtotime($carregaPeloId["data_usuario"]));
+				 echo $carregaPeloId["data_usuario"];
+            	?>
+            </td>
+            <td>
+            	<?php 
+					if($carregaPeloId["status_usuario"] == 0) {
+						echo "INATIVO"; 
+					}else{
+						echo "ATIVO";
+					}
+				?>
+            </td>
         </tr>
     </tbody>
 </table>
@@ -217,21 +231,21 @@ body {
 		</tr>
 	</thead>
 	<tbody>
-		<?php foreach ( $result as $result ) { ?>
+		<?php foreach ( $carregaUsuarios as $carregaUsuarios ) { ?>
 		<tr>
-			<td><?php echo $result->id; ?></td>
-			<td><?php echo $result->nome; ?></td>
-			<td><?php echo $result->login; ?></td>
-			<td><?php echo $result->senha; ?></td>
+			<td><?php echo $carregaUsuarios["id"]; ?></td>
+			<td><?php echo $carregaUsuarios["nome"]; ?></td>
+			<td><?php echo $carregaUsuarios["login"]; ?></td>
+			<td><?php echo $carregaUsuarios["senha"]; ?></td>
 			<td>
 				<?php
-					$result->data = date("d/m/Y H:i:s", strtotime($result->data));
-				 	echo $result->data; 
+					$carregaUsuarios["data"] = date("d/m/Y H:i:s", strtotime($carregaUsuarios["data"]));
+				 	echo $carregaUsuarios["data"]; 
 				?>			 	
 			</td>
 			<td>
 				<?php 
-					if($result->status == 0) {
+					if($carregaUsuarios["status"] == 0) {
 						echo "INATIVO"; 
 					}else{
 						echo "ATIVO";
