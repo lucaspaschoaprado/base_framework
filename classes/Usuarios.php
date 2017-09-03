@@ -177,25 +177,27 @@ class Usuarios{
 	}
 
 	//Método para inserir dados no sistema sem procedure.
-	public function inserirUsuarioSemProcedure($nome, $login, $senha, $status){
+	public function inserirUsuarioSemProcedure($nome, $login, $senha, $status, $data){
 
 		$conecta = new Database();
 
-		$resultados = $conecta->query("INSERT INTO usuarios (nome, login, senha, status) VALUES (:NOME, :LOGIN, :SENHA, :STATUS)", array(
+		$resultados = $conecta->query("INSERT INTO usuarios (nome, login, senha, data, status) VALUES (:NOME, :LOGIN, :SENHA, :DATA, :STATUS)", array(
 
 			":NOME"=>$nome,
 			":LOGIN"=>$login,
 			":SENHA"=>$senha,
+			":DATA"=>$data,
 			":STATUS"=>$status
 
 		));
 		
 		if($resultados->rowCount() > 0){
 		
-			echo "OK - Sem Procedure";
+			$alerta = Alertas::usuarioCadastroAlert();
 		
 		}else{
-		
+			
+			$alerta = Alertas::usuarioErroAlert();
 			throw new Exception("Error Processing Request");
 		
 		}

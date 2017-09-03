@@ -1,9 +1,3 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-
 <?php
 //Puxamos o autoload 
 require_once("config.php");
@@ -19,13 +13,6 @@ $result = new Usuarios();
 $result = Usuarios::carregaUsuarios();
 $result = json_encode($result);
 $result = json_decode($result);
-
-if ($result >= 1) {
-    $alerta = Alertas::usuarioCadastroAlert();
-    //$alerta = Alertas::usuarioUpdateAlert();
-    //$alerta = Alertas::usuarioDeleteAlert();
-}
-
 
 //Realiza uma busca de usuários pelo nome digitado.
 //$result = Usuarios::buscaUsuarios("BUSCA AQUI");
@@ -76,6 +63,8 @@ if ($result >= 1) {
 <!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
 	<title>Base Framework</title>
 
 <!-- IMPORTANDO ESTILOS DATA TABLE-->
@@ -123,6 +112,64 @@ body {
 
 </head>
 <body style="width: 50%;">
+
+<h5>Cadastrar Usuário</h5>
+<br>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cadastrarUsuario">Cadastrar</button>
+
+<div class="modal fade" id="cadastrarUsuario" tabindex="-1" role="dialog" aria-labelledby="cadastrarUsuarioLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cadastrarUsuarioLabel">Cadastrar Usuário</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="post.php" method="POST">
+          <div class="form-group">
+            <label for="recipient-name" class="form-control-label">Nome:</label>
+            <input type="text" class="form-control" name="nome">
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="form-control-label">Login:</label>
+            <input type="text" class="form-control" name="login" required>
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="form-control-label">Senha:</label>
+            <input type="password" class="form-control" name="senha" required>
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="form-control-label">Data:</label>
+            <input type="date" class="form-control" name="data" required>
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="form-control-label">Status:</label>
+            <select name="status" class="form-control" required>
+                <option value="0">ATIVO</option>
+                <option value="1">INATIVO</option>
+            </select>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br><br><br>
+<hr>
+<br><br><br>
 
 
 <h5>Tabela de Teste com Dados Fictícios</h5>
