@@ -43,6 +43,12 @@ class Alertas{
 		exit;
 	}
 
+	public static function permissaoAlert(){
+
+		echo "<script>$('#permissaoAlert').modal('show');</script>";
+		
+	}
+
 }
 
  ?>

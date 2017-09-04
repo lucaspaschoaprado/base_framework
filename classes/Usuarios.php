@@ -7,6 +7,7 @@ class Usuarios{
 	private $nome_usuario;
 	private $login_usuario;
 	private $senha_usuario;
+	private $nivel_permissao_usuario;
 	private $data_usuario;
 	private $status_usuario;
 
@@ -51,6 +52,16 @@ class Usuarios{
 	}
 
 	//Recebe o conteudo da variável.
+	public function getNivelPermissaoUsuario(){
+		return $this->nivel_permissao_usuario;
+	}
+
+	//Altera o conteúdo da variável.
+	public function setNivelPermissaoUsuario($valor){
+		$this->nivel_permissao_usuario = $valor;
+	}
+
+	//Recebe o conteudo da variável.
 	public function getDataUsuario(){
 		return $this->data_usuario;
 	}
@@ -77,6 +88,7 @@ class Usuarios{
 		$this->setNomeUsuario($dados['nome']);
 		$this->setLoginUsuario($dados['login']);
 		$this->setSenhaUsuario($dados['senha']);
+		$this->setNivelPermissaoUsuario($dados['nivel_permissao']);
 		$this->setDataUsuario(new DateTime($dados['data']));
 		$this->setStatusUsuario($dados['status']);
 
@@ -180,15 +192,16 @@ class Usuarios{
 	}
 
 	//Método para inserir dados no sistema sem procedure.
-	public function inserirUsuarioSemProcedure($nome, $login, $senha, $status){
+	public function inserirUsuarioSemProcedure($nome, $login, $senha, $nivel_permissao, $status){
 
 		$conecta = new Database();
 
-		$resultados = $conecta->query("INSERT INTO usuarios (nome, login, senha, status) VALUES (:NOME, :LOGIN, :SENHA, :STATUS)", array(
+		$resultados = $conecta->query("INSERT INTO usuarios (nome, login, senha, nivel_permissao, status) VALUES (:NOME, :LOGIN, :SENHA, :NIVEL_PERMISSAO, :STATUS)", array(
 
 			":NOME"=>$nome,
 			":LOGIN"=>$login,
 			":SENHA"=>$senha,
+			":NIVEL_PERMISSAO"=>$nivel_permissao,
 			":STATUS"=>$status
 
 		));
@@ -209,21 +222,23 @@ class Usuarios{
 	}
 
 	//Método para alterar usuário.
-	public function alterarUsuario($nome, $login, $senha, $status){
+	public function alterarUsuario($nome, $login, $senha, $nivel_permissao, $status){
 
 		$this->setNomeUsuario($nome);
 		$this->setLoginUsuario($login);
 		$this->setSenhaUsuario($senha);
+		$this->setNivelPermissaoUsuario($nivel_permissao);
 		$this->setStatusUsuario($status);
 
 		$conecta = new Database();
 
-		$resultados = $conecta->query("UPDATE usuarios SET nome = :NOME, login = :LOGIN, senha = :SENHA, status = :STATUS WHERE id = :ID", array(
+		$resultados = $conecta->query("UPDATE usuarios SET nome = :NOME, login = :LOGIN, senha = :SENHA, nivel_permissao = :NIVEL_PERMISSAO, status = :STATUS WHERE id = :ID", array(
 
 			":ID"=>$this->getIdUsuario(),
 			":NOME"=>$this->getNomeUsuario(),
 			":LOGIN"=>$this->getLoginUsuario(),
 			":SENHA"=>$this->getSenhaUsuario(),
+			":NIVEL_PERMISSAO"=>$this->getNivelPermissaoUsuario(),
 			":STATUS"=>$this->getStatusUsuario()
 
 		));
@@ -276,7 +291,8 @@ class Usuarios{
 			"nome_usuario"=>$this->getNomeUsuario(),
 			"login_usuario"=>$this->getLoginUsuario(),
 			"senha_usuario"=>$this->getSenhaUsuario(),
-			"data_usuario"=>$this->getDataUsuario()->format("d/m/Y H:i:s"),
+			"nivel_permissao_usuario"=>$this->getNivelPermissaoUsuario(),
+			"data_usuario"=>$this->getDataUsuario()->format("d/m/Y H:i:s"),			
 			"status_usuario"=>$this->getStatusUsuario()
 
 		));

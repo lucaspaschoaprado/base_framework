@@ -21,11 +21,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 	$resultado->carregaPeloId($id_usuario);
 	$carregaPeloId = json_decode($resultado, true);
 	$nome_usuario = $carregaPeloId["nome_usuario"];
+	$nivel_permissao_usuario = $carregaPeloId["nivel_permissao_usuario"];
 	$status_usuario = $carregaPeloId["status_usuario"];
 
 	//Criamos as variáveis de entrada para salvar os dados em sessão.
 	date_default_timezone_set('America/Sao_Paulo');
-	$data_entrada = date("d-m-Y");
+	$data_entrada = date("d/m/Y");
 	$hora_entrada = date("H:i:s");
 
 	$_SESSION["session_data_entrada"] = $data_entrada;
@@ -33,6 +34,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 	$_SESSION["session_id_usuario"] = $id_usuario;
 	$_SESSION["session_nome_usuario"] = $nome_usuario;
 	$_SESSION["session_login_usuario"] = $login_usuario;
+	$_SESSION["session_nivel_permissao_usuario"] = $nivel_permissao_usuario;
 	$_SESSION["session_status_usuario"] = $status_usuario;
 		
 	echo("<script language='JavaScript'>location='home.php';</script>");

@@ -1,0 +1,50 @@
+/* ======= Base ======= */
+body {
+	font-style: 10% @important;
+  	background-image: url(../images/bg2.png);
+	background-repeat: repeat;
+	-moz-background-size: 100% 100%;
+	-webkit-background-size: 100% 100%;
+	background-size: 100%;
+
+	margin: 70px auto !important;
+}
+
+table{
+	font-size: 75%;
+}
+
+#conteudo {
+	width:70%;
+	margin: 0 auto;
+}
+
+.navbar {
+	font-size:80%;
+}
+
+.card {
+	margin: 0 auto !important;
+
+	height: 0 auto !important;
+}
+
+.card-bg {
+	background:#FFF;
+	padding: 14px;
+	margin: 5px;
+	border-top: 5px solid #2693FF;
+	width: 100%;
+}
+
+.card-header {
+  	font-weight: 700;
+  	color: #778492;
+	text-align:left;
+}
+
+.card-title {
+  	font-weight: 400;
+  	color: #778492;
+	text-align:left;
+}

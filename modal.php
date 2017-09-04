@@ -23,7 +23,7 @@
         <b>CADASTRADO COM SUCESSO</b>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" onclick="window.location.href='home.php'">Fechar</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='usuarios.php'">Fechar</button>
       </div>
     </div>
   </div>
@@ -43,7 +43,7 @@
         <b>ALTERADO COM SUCESSO</b>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" onclick="window.location.href='home.php'">Fechar</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='usuarios.php'">Fechar</button>
       </div>
     </div>
   </div>
@@ -63,7 +63,7 @@
         <b>EXCLUÍDO COM SUCESSO</b>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" onclick="window.location.href='home.php'">Fechar</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='usuarios.php'">Fechar</button>
       </div>
     </div>
   </div>
@@ -124,6 +124,33 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" onclick="window.location.href='index.php'">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FIM DOS ALERTAS DA CLASSE USUARIOS -->
+<!-- ************************************************************************************************************** -->
+
+
+<!-- FIM DOS ALERTAS DA CLASSE USUARIOS -->
+<!-- ************************************************************************************************************** -->
+
+<!-- ACESSO NEGADO, VOCÊ NÃO POSSUI AS PERMISSÕES NECESSÁRIAS! -->
+<div class="modal fade bg-danger" id="permissaoAlert" tabindex="-1" role="dialog" aria-labelledby="permissaoAlert" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="permissaoAlert"><?php echo $title; ?></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" align="center">
+        <b>ERRO!<br />ACESSO NEGADO, VOCÊ NÃO POSSUI AS PERMISSÕES NECESSÁRIAS.</b>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" onclick="window.location.href='home.php'">Fechar</button>
       </div>
     </div>
   </div>
