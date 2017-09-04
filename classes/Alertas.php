@@ -27,6 +27,22 @@ class Alertas{
 	
 	}
 
+	public static function loginFailAlert(){
+
+		echo "<script>$('#loginFailAlert').modal('show');</script>";
+
+		//Exibe o alerta e interrompe a execução do restante da página.
+		exit;	
+	}
+
+	public static function acessoNegadoAlert(){
+
+		echo "<script>$('#acessoNegadoAlert').modal('show');</script>";
+		
+		//Exibe o alerta e interrompe a execução do restante da página.
+		exit;
+	}
+
 }
 
  ?>

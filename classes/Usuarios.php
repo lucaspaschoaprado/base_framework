@@ -129,12 +129,15 @@ class Usuarios{
 
 		$conecta = new Database();
 
-		$resultados = $conecta->select("SELECT * FROM usuarios WHERE login = :LOGIN AND senha = :SENHA", array(
+		$resultados = $conecta->select("SELECT * FROM usuarios WHERE login = :LOGIN AND senha = :SENHA AND status = :STATUS", array(
 			":LOGIN"=>$login,
-			":SENHA"=>$senha
+			":SENHA"=>$senha,
+
+			//1 = ATIVO - 0 = INATIVO
+			":STATUS"=>1
 		));
 
-		//Agora vamos validar a consulta e ver se existe algum retorno.
+		//Agora vamos validar a consulta e ver se existe algum retorno, ou seja, se o login, senha e status do usuário existem e confirmam.
 		if (count($resultados) > 0) {
 			
 			$linha = $resultados[0];
@@ -144,7 +147,7 @@ class Usuarios{
 
 		}else{
 
-			throw new Exception("Login e/ou senha inválidos.");
+			$alerta = Alertas::loginFailAlert();
 			
 		}
 	}
@@ -177,16 +180,15 @@ class Usuarios{
 	}
 
 	//Método para inserir dados no sistema sem procedure.
-	public function inserirUsuarioSemProcedure($nome, $login, $senha, $status, $data){
+	public function inserirUsuarioSemProcedure($nome, $login, $senha, $status){
 
 		$conecta = new Database();
 
-		$resultados = $conecta->query("INSERT INTO usuarios (nome, login, senha, data, status) VALUES (:NOME, :LOGIN, :SENHA, :DATA, :STATUS)", array(
+		$resultados = $conecta->query("INSERT INTO usuarios (nome, login, senha, status) VALUES (:NOME, :LOGIN, :SENHA, :STATUS)", array(
 
 			":NOME"=>$nome,
 			":LOGIN"=>$login,
 			":SENHA"=>$senha,
-			":DATA"=>$data,
 			":STATUS"=>$status
 
 		));
@@ -278,7 +280,6 @@ class Usuarios{
 			"status_usuario"=>$this->getStatusUsuario()
 
 		));
-
 	}
 
 }

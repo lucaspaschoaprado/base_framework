@@ -1,6 +1,6 @@
 <?php
 
-$title = "Título do Sistema";
+$title = "Nome do Projeto";
 
 class Database extends PDO{
 
