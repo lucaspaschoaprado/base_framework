@@ -83,14 +83,15 @@ $carregaUsuarios = Usuarios::carregaUsuarios();
 					<?php foreach ( $carregaUsuarios as $carregaUsuarios ) { ?>
 					<tr>
 						<td width="110px;" align="center">
+						<?php $id_usuario = $carregaUsuarios["id"]; ?>
 							<!-- BOTÃO EDITAR -->
-							<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editarUsuario" data-id="<?php echo $carregaUsuarios["id"]; ?>" title="Editar"><i class="fa fa-pencil text-white"></i></a>
+							<a class="btn btn-primary btn-sm editarUsuario" data-toggle="modal" data-target="#editarUsuario" data-id="<?php echo $id_usuario; ?>" data-nome="<?php echo $carregaUsuarios["nome"]; ?>" data-login="<?php echo $carregaUsuarios["login"]; ?>" data-nivel="<?php echo $carregaUsuarios["nivel_permissao"]; ?>" title="Editar"><i class="fa fa-pencil text-white"></i></a>
 
 							<!-- BOTÃO VISUALIZAR -->
-							<a class="btn btn-success btn-sm" data-toggle="modal" data-target="#visualizarUsuario" title="Visualizar"><i class="fa fa-search text-white"></i></a>
+							<a class="btn btn-success btn-sm visualizarUsuario" data-toggle="modal" data-target="#visualizarUsuario" data-id="<?php echo $id_usuario; ?>" title="Visualizar"><i class="fa fa-search text-white"></i></a>
 							
 							<!-- BOTÃO EXCLUIR -->
-							<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#excluirUsuario" title="Alterar Status"><i class="fa fa-refresh text-white"></i></a>
+							<a class="btn btn-danger btn-sm alterarStatus" data-toggle="modal" data-target="#alterarStatus" data-id="<?php echo $id_usuario; ?>" title="Alterar Status"><i class="fa fa-refresh text-white"></i></a>
 						</td>
 						<td><?php echo $carregaUsuarios["id"]; ?></td>
 						<td><?php echo $carregaUsuarios["nome"]; ?></td>
@@ -129,7 +130,6 @@ $carregaUsuarios = Usuarios::carregaUsuarios();
 					<?php } ?>
 				</tbody>
 			</table>
-			<div id="editarUsuario" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
           </div>
         </div>
     </div>
@@ -144,8 +144,28 @@ $carregaUsuarios = Usuarios::carregaUsuarios();
 <script>
 $(document).ready(function(){
   $("[data-target='#editarUsuario']").on("click", function(){
-    var userID = $(this).data("id");
-    $("#userID").val(userID);
+    var id_usuario = $(this).data("id");
+    var nome = $(this).data("nome");
+    var login = $(this).data("login");
+    var nivel = $(this).data("nivel");
+    $("#id_usuario").val(id_usuario);
+    $("#nome").val(nome);
+    $("#login").val(login);
+    $("#nivel").val(nivel);
+  });
+});
+
+$(document).ready(function(){
+  $("[data-target='#visualizarUsuario']").on("click", function(){
+    var id_usuario2 = $(this).data("id");
+    $("#id_usuario2").val(id_usuario2);
+  });
+});
+
+$(document).ready(function(){
+  $("[data-target='#alterarStatus']").on("click", function(){
+    var id_usuario3 = $(this).data("id");
+    $("#id_usuario3").val(id_usuario3);
   });
 });
 </script>

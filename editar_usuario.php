@@ -9,7 +9,7 @@
       </div>
       <div class="modal-body">
         <form action="editar_usuario_post.php" method="POST">
-          <input type="hidden" id="userID" name="id_usuario">
+          <input type="hidden" id="id_usuario" name="id_usuario">
 
           <div class="form-group">
             <label for="recipient-name" class="form-control-label">Nome:</label>
@@ -18,12 +18,12 @@
 
           <div class="form-group">
             <label for="recipient-name" class="form-control-label">Login:</label>
-            <input type="text" class="form-control" name="login" required>
+            <input type="text" class="form-control" name="login" id="login" required>
           </div>
 
           <div class="form-group">
             <label for="recipient-name" class="form-control-label">Nível de Permissão:</label>
-            <select name="nivel_permissao" class="form-control" aria-describedby="nivel_permissao" required>
+            <select name="nivel_permissao" id="nivel" class="form-control" aria-describedby="nivel_permissao" required>
                 <option></option>
                 <option value="1">ADMINISTRADOR</option>
                 <option value="2">INTERMEDIÁRIO</option>

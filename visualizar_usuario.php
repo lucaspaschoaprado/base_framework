@@ -9,6 +9,8 @@
       </div>
       <div class="modal-body">
         <form action="#" method="POST">
+        <input type="text" id="id_usuario2" name="id_usuario">
+
           <div class="form-group">
             <label for="recipient-name" class="form-control-label"><b>Nome:</b></label>
           </div>
