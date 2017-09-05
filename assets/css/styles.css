@@ -10,6 +10,16 @@ body {
 	margin: 70px auto !important;
 }
 
+footer {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: transparent;
+  text-align: center;
+  font-size: 11px;
+}
+
 table{
 	font-size: 75%;
 }
@@ -34,6 +44,8 @@ table{
 	padding: 14px;
 	margin: 5px;
 	border-top: 5px solid #2693FF;
+	border-bottom: 1px solid #2693FF;
+
 	width: 100%;
 }
 

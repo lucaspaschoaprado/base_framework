@@ -8,7 +8,9 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="#" method="POST">
+        <form action="editar_usuario_post.php" method="POST">
+          <input type="hidden" id="userID" name="id_usuario">
+
           <div class="form-group">
             <label for="recipient-name" class="form-control-label">Nome:</label>
             <input type="text" class="form-control something" name="nome" id="nome">
@@ -17,11 +19,6 @@
           <div class="form-group">
             <label for="recipient-name" class="form-control-label">Login:</label>
             <input type="text" class="form-control" name="login" required>
-          </div>
-
-          <div class="form-group">
-            <label for="recipient-name" class="form-control-label">Senha:</label>
-            <input type="password" class="form-control" name="senha" required>
           </div>
 
           <div class="form-group">
@@ -39,14 +36,6 @@
               <br />
               Básico - Visualização.
             </small>
-          </div>
-
-          <div class="form-group">
-            <label for="recipient-name" class="form-control-label">Status:</label>
-            <select name="status" class="form-control" required>
-                <option value="1">ATIVO</option>
-                <option value="0">INATIVO</option>
-            </select>
           </div>
 
           <div class="modal-footer">

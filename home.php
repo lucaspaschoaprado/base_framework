@@ -80,7 +80,8 @@ $nivelPermissao = Permissoes::nivelPermissaoBasico();
 
 	<title><?php echo $title; ?></title>
 
-	<?php require_once('includes.php'); ?>
+  <!-- INCLUDE DE SCRIPTS CSS, JS -->
+	<?php require_once('scripts.php'); ?>
 
 </head>
 
@@ -102,6 +103,11 @@ $nivelPermissao = Permissoes::nivelPermissaoBasico();
     </div>
 </div>
 </section>
+
+<?php 
+  //Rodapé
+  require_once('footer.php');
+?>
 
 </body>
 </html>

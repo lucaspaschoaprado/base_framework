@@ -44,6 +44,7 @@
           <div class="form-group">
             <label for="recipient-name" class="form-control-label">Status:</label>
             <select name="status" class="form-control" required>
+                <option></option>
                 <option value="1">ATIVO</option>
                 <option value="0">INATIVO</option>
             </select>

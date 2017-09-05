@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel="icon" href="favicon.ico">
 
-    <title>Nome do Projeto</title> 
+    <title>Projeto XYZ</title> 
 
     <!-- Última versão CSS compilada e minificada -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
@@ -27,7 +27,7 @@
         <h4 class="form-signin-heading" align="center">
         	<img src="assets/images/logo_projeto.png" width="140" /><br />
             
-            Nome do Projeto
+            Projeto XYZ
         </h4>
         
         <label for="Usuário" class="sr-only">Usuário</label>
@@ -39,6 +39,7 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
       </form>
 
-    </div>
+    </div>   
+
   </body>
 </html>

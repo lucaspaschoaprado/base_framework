@@ -21,6 +21,7 @@ body {
   margin: 0 auto;
   background-color: rgba(255,255,255,0.8);
   border-top:#007bff 10px solid;
+  border-bottom: 1px solid #2693FF;
 }
 .form-signin .form-signin-heading{
   margin-bottom: 10px;

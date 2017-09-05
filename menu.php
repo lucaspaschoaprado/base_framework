@@ -8,9 +8,14 @@
       <li class="nav-item active">
         <a class="nav-link" href="home.php"><i class="fa fa-home fa-fw text-white"></i> Início</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="usuarios.php"><i class="fa fa-users fa-fw text-white"></i> Usuários</a>
-      </li>
+      
+      <!-- Só exibe o bloco do menu se o usuário for Administrador = 1 -->
+      <?php if ($session_nivel_permissao_usuario == 1) {?>
+        <li class="nav-item active">
+          <a class="nav-link" href="usuarios.php"><i class="fa fa-users fa-fw text-white"></i> Usuários</a>
+        </li>
+      <?php } ?>
+      
       <li class="nav-item active">
         <a class="nav-link" href="minha_conta.php">| <i class="fa fa-lock fa-fw text-white" style="margin-left: 10px;"></i> Minha Conta</a>
       </li>

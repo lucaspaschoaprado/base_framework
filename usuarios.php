@@ -17,60 +17,8 @@ $nivelPermissao = Permissoes::nivelPermissaoAdministrador();
 //Instanciando a Classe Usuários.
 $result = new Usuarios();
 
-//Carrega linha de registro do banco de dados pelo ID.
-//$result->carregaPeloId(1);
-//$carregaPeloId = json_decode($result, true);
-//echo $carregaPeloId["id_usuario"];
-
 //Carrega lista de usuários.
 $carregaUsuarios = Usuarios::carregaUsuarios();
-//$carregaUsuarios = json_encode($carregaUsuarios);
-//$carregaUsuarios = json_decode($carregaUsuarios, true);
-
-//Realiza uma busca de usuários pelo nome digitado.
-//$result = Usuarios::buscaUsuarios("BUSCA AQUI");
-//echo json_encode($result);
-
-
-//Busca usuário validando login/senha.
-//$login = "lucas";
-//$senha = "123456";
-//$result->validaLogin($login, $senha);
-//echo $result;
-
-
-//Insere novo usuário COM procedure.
-//$result->setNomeUsuario("Cliente 01");
-//$result->setLoginUsuario("cliente01");
-//$result->setSenhaUsuario("cliente01");
-//$result->setStatusUsuario("1");
-//$result->inserirUsuario();
-//echo $result;
-
-
-//Insere novo usuário SEM procedure.
-//$nome = "Cliente 02";
-//$login = "cliente02";
-//$senha = "cliente02";
-//$status = "1";
-//$result->inserirUsuarioSemProcedure($nome, $login, $senha, $status);
-//echo json_encode($result);
-
-
-//Alterar dados do usuário.
-//$result->carregaPeloId(1);
-//$nome = "Lucas Prado";
-//$login = "lucasprado";
-//$senha = "123456";
-//$status = "1";
-//$result->alterarUsuario($nome, $login, $senha, $status);
-//echo $result;
-
-
-//Excluir usuário.
-//$result->carregaPeloId(54);
-//$result->excluirUsuario();
-//echo $result;
 ?>
 
 <!DOCTYPE html>
@@ -80,7 +28,8 @@ $carregaUsuarios = Usuarios::carregaUsuarios();
 
 	<title><?php echo $title; ?></title>
 
-	<?php require_once('includes.php'); ?>
+	<!-- INCLUDE DE SCRIPTS CSS, JS -->
+	<?php require_once('scripts.php'); ?>
 
 	<!-- INICIALIZANDO DATA TABLE E SETANDO CONFIGURAÇÕES--> 
 	<script type="text/javascript" language="javascript" class="init">
@@ -95,7 +44,7 @@ $carregaUsuarios = Usuarios::carregaUsuarios();
 		} );
 	</script>
 
-<!-- PUXANDO AQUI OS FORMULÁRIOS PARA CADASTRO, EDIÇÃO E EXLCUSÃO DE USUÁRIOS-->
+<!-- PUXANDO AQUI OS FORMULÁRIOS PARA CADASTRO, EDIÇÃO E EXCLUSÃO DE USUÁRIOS-->
 <?php require_once('cadastrar_usuario.php'); ?>
 <?php require_once('editar_usuario.php'); ?>
 <?php require_once('excluir_usuario.php'); ?>
@@ -125,7 +74,7 @@ $carregaUsuarios = Usuarios::carregaUsuarios();
 						<th>ID</th>
 						<th>Nome</th>
 						<th>Login</th>
-						<th>Senha</th>
+						<th>Nível de Permissão</th>
 						<th>Data</th>
 						<th>Status</th>
 					</tr>
@@ -135,7 +84,7 @@ $carregaUsuarios = Usuarios::carregaUsuarios();
 					<tr>
 						<td width="110px;" align="center">
 							<!-- BOTÃO EDITAR -->
-							<a class="btn btn-primary btn-sm editarUsuario" data-id="1" data-toggle="modal" data-target="#editarUsuario" title="Editar"><i class="fa fa-pencil text-white"></i></a>
+							<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editarUsuario" data-id="<?php echo $carregaUsuarios["id"]; ?>" title="Editar"><i class="fa fa-pencil text-white"></i></a>
 
 							<!-- BOTÃO VISUALIZAR -->
 							<a class="btn btn-success btn-sm" data-toggle="modal" data-target="#visualizarUsuario" title="Visualizar"><i class="fa fa-search text-white"></i></a>
@@ -146,7 +95,21 @@ $carregaUsuarios = Usuarios::carregaUsuarios();
 						<td><?php echo $carregaUsuarios["id"]; ?></td>
 						<td><?php echo $carregaUsuarios["nome"]; ?></td>
 						<td><?php echo $carregaUsuarios["login"]; ?></td>
-						<td><?php echo $carregaUsuarios["senha"]; ?></td>
+						<td>
+							<?php 
+
+								$nivel_permissao = $carregaUsuarios["nivel_permissao"];
+
+								if($nivel_permissao == 1) {
+									echo "<span class='badge badge-dark'>ADMINISTRADOR</span>"; 
+								}elseif($nivel_permissao == 2){
+									echo "<span class='badge badge-primary'>INTERMEDIÁRIO</span>"; 
+								}elseif($nivel_permissao == 3){
+									echo "<span class='badge badge-info'>BÁSICO</span>"; 
+								}
+
+							?>							
+						</td>
 						<td>
 							<?php
 								$carregaUsuarios["data"] = date("d/m/Y H:i:s", strtotime($carregaUsuarios["data"]));
@@ -166,16 +129,25 @@ $carregaUsuarios = Usuarios::carregaUsuarios();
 					<?php } ?>
 				</tbody>
 			</table>
+			<div id="editarUsuario" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
           </div>
         </div>
     </div>
 </div>
 </section>
 
-<script type="text/javascript">
-	
+<?php 
+  //Rodapé
+  require_once('footer.php');
+?>
 
-
+<script>
+$(document).ready(function(){
+  $("[data-target='#editarUsuario']").on("click", function(){
+    var userID = $(this).data("id");
+    $("#userID").val(userID);
+  });
+});
 </script>
 
 </body>
